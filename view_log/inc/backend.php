@@ -1,5 +1,6 @@
 <?php
 
+
 function view_log_function()
 {
     global $wpdb;
