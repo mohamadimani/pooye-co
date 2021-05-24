@@ -1,0 +1,23 @@
+a.add_row {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    text-align: center;
+    background-color: #a5d6ff;
+    font-size: 17px;
+    border-radius: 3px;
+    line-height: 20px;
+    display: inline-block;
+}
+
+span.remove_row {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    text-align: center;
+    background-color: #ffa5a5;
+    font-size: 17px;
+    border-radius: 3px;
+    line-height: 20px;
+    display: inline-block;
+}
