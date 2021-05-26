@@ -6,9 +6,11 @@
             <tr>
                 <th scope="row"><label for="vote_activity"> فعال کردن </label></th>
                 <td>
-                    <input type="checkbox" name="vote_activity" id="vote_activity">
+                    <input type="checkbox" name="vote_activity" id="vote_activity"
+                        <?php checked(1, $post_vote_activity == 'on' ? 1 : 0) ?> >
                 </td>
             </tr>
+
             <tr>
                 <th scope="row"><label for="vote_question"> سوال </label></th>
                 <td>
@@ -80,12 +82,7 @@
             <td><b>افزودن پاسخ :</b></td>
             <td><a class="add_row">+</a></td>
         </tr>
-        <tr>
-            <td><b> ذخیره :</b></td>
-            <th>  <?php
-                submit_button();
-                ?></th>
-        </tr>
+
         </tfoot>
     </table>
     <!--    </form>-->
