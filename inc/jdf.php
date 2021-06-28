@@ -588,7 +588,6 @@ function jdate_words($array, $mod = '') {
   return ($mod === '') ? $array : implode($mod, $array);
 }
 
-
 /**  Gregorian & Jalali (Hijri_Shamsi,Solar) Date Converter Functions
 Author: JDF.SCR.IR =>> Download Full Version :  http://jdf.scr.ir/jdf
 License: GNU/LGPL _ Open Source & Free :: Version: 2.80 : [2020=1399]

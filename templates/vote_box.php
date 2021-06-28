@@ -12,6 +12,13 @@
             </tr>
 
             <tr>
+                <th scope="row"><label for="end_date">تا تاریخ : </label></th>
+                <td>
+                    <input type="text" name="end_date_vote" id="end_date_vote" value="<?= @$vote_end_date ?>">
+                </td>
+            </tr>
+
+            <tr>
                 <th scope="row"><label for="vote_question"> سوال </label></th>
                 <td>
                     <input type="text" name="vote_question" id="vote_question" value="<?= $post_vote_question ?>">
@@ -39,6 +46,13 @@
                     <input type="checkbox" name="vote_activity" id="vote_activity">
                 </td>
             </tr>
+            <tr>
+                <th scope="row"><label for="end_date">تا تاریخ : </label></th>
+                <td>
+                    <input type="text" name="end_date_vote" id="end_date_vote">
+                </td>
+            </tr>
+
             <tr>
                 <th scope="row"><label for="vote_question"> سوال </label></th>
                 <td>
@@ -87,4 +101,4 @@
     </table>
     <!--    </form>-->
 </div>
-
+<script> $("#end_date_vote").persianDatepicker();</script>
