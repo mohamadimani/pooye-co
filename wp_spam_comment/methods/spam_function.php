@@ -4,17 +4,22 @@ function spam_comment_function($comment_id = '', $comment_object = '')
 {
     global $wpdb, $table_prefix;
 
+    $wp_terms = $table_prefix . 'terms';
     $user_id = $comment_object->user_id;
+    $comment = $comment_object->comment_content;
     $user_meta = get_userdata($user_id);
     $user_roles = $user_meta->roles[0];
-    $wp_terms = $table_prefix . 'terms';
-    $spam_letters = $wpdb->get_results($wpdb->prepare("SELECT * FROM  {$wp_terms} where `name`='spam_filter'   "));
-    if ($user_roles != 'author' and $user_roles != 'editor' and $user_roles != 'administrator' and $comment_object->comment_ID > 0) {
 
-        $comment = $comment_object->comment_content;
+
+
+//    if (empty(trim($user_roles)) or ($user_roles != 'author' and $user_roles != 'editor' and $user_roles != 'administrator' and $comment_object->comment_ID > 0)) {
+        if ($user_roles != 'author' and $user_roles != 'editor' and $user_roles != 'administrator' and $comment_object->comment_ID > 0) {
+
+
+    $spam_letters = $wpdb->get_results($wpdb->prepare("SELECT * FROM  {$wp_terms} where `name`='spam_filter'   "));
         // The Regular Expression filter
-        $reg_exUrl = '~[a-z]+://\S+~';
-        if (preg_match_all($reg_exUrl, $comment)) {
+//        $reg_exUrl = '~[a-z]+://\S+~';
+        if (preg_match_all('(http|https|www|://|www.)', $comment)) {
             $result = $wpdb->update($table_prefix . 'comments',
                 array('comment_approved' => 'spam', 'comment_author_url' => ' '),
                 array('comment_ID' => $comment_id),
@@ -23,8 +28,7 @@ function spam_comment_function($comment_id = '', $comment_object = '')
         } else {
             $is_spam = 0;
             foreach ($spam_letters as $key => $letter) {
-                // for remove letter from  text
-//                    $comment = str_replace($letter->slug, "", $comment);
+
 //                    for check is letter in text
                 if (strpos($comment, $letter->slug)) {
                     $is_spam = 1;
@@ -38,7 +42,7 @@ function spam_comment_function($comment_id = '', $comment_object = '')
                     array('comment_ID' => $comment_id),
                     array('%s', '%s', '%s'),
                     array('%d'));
-            } else {
+            } else if ($is_spam == 0) {
                 $result3 = $wpdb->update($wp_comment,
                     array('comment_approved' => '1', 'comment_author_url' => ' '),
                     array('comment_ID' => $comment_id),
